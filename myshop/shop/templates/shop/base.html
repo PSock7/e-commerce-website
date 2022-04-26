@@ -1,0 +1,196 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Eshop</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+  <link href="{% static "css/foot.css" %}" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+   <link href="{% static "css/zearch.css" %}" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" %}">
+  <!-- Bootstrap core CSS -->
+  <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="{% static "css/mdb.min.css" %}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{% static "css/style.min.css" %}" rel="stylesheet">
+  <style type="text/css">
+    html,
+    body,
+    header,
+    .carousel {
+      height: 60vh;
+    }
+
+    @media (max-width: 740px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+    @media (min-width: 800px) and (max-width: 850px) {
+
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100vh;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+    <div class="mt-5 pt-4">
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endfor %}
+    {% endif %}
+    </div>
+
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container">
+
+      <!-- Brand -->
+      <a class="navbar-brand waves-effect" href="{% url "shop:product_list" %}" target="_self">
+        <img src="{% static "img/Logo1.png" %}">
+      </a>
+
+      <!-- Collapse -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Links -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <!-- Left -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link waves-effect"  href="{% url "shop:product_list" %}" target="_self"><i class="fas fa-home"></i> Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        
+        </ul>
+
+        <!-- Right -->
+        <ul class="navbar-nav nav-flex-icons">
+          <li class="nav-item">
+            <a href="{% url "cart:cart_detail" %}" class="nav-link waves-effect">
+              <span class="badge red z-depth-1 mr-1">{% with total_items=cart|length %}
+    {% if cart|length > 0 %}
+      {{ total_items }}
+      
+    
+    {% else %}  {% endif %}
+  {% endwith %}</span>
+              <i class="fas fa-shopping-cart"></i>
+              <span class="clearfix d-none d-sm-inline-block"> Cart </span>
+            </a>
+          </li>
+           <div class="navbar-nav">
+            {% if user.is_authenticated %}
+               <a class="nav-item nav-link" href="{% url 'profile' %}"><i class="fas fa-user-circle"></i> {{user.username}}</a--->
+               <a class="nav-item nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i>  Logout</a>
+
+            {% else%}
+              <a class="nav-item nav-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i>  Login</a>
+              <a class="nav-item nav-link" href="{% url 'register' %}"><i class="far fa-user"></i>  Register</a>
+            {% endif %}
+            </div>
+          
+        </ul>
+
+      </div>
+
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+<div id="content">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <footer class="footer">
+     <div class="footer-content">
+            <a href="{% url "shop:product_list" %}" ><img src="{% static "img/logo2.png" %}" alt="#"></a></div>
+     <div class="container">
+      <div class="row">
+        <div class="footer-col">
+          <h4>company</h4>
+          <ul>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact Us</a></li>
+            <li><a href="{% url 'privacy_policy' %}">privacy policy</a></li>
+            
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>get help</h4>
+          <ul>
+            <li><a href="{% url 'cookie' %}">Cookie</a></li>
+            <li><a href="{% url 'returns' %}">returns</a></li>
+            
+            <li><a href="{% url 'payment_options' %}">payment options</a></li>
+          </ul>
+        </div>
+       
+        <div class="footer-col">
+          <h4>follow us</h4>
+          <div class="social-links">
+            <a href="https://www.facebook.com/Mouhamed.sock03/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/Mouhamedsock0"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/pape-mouhamadou-m-sock-bb7a68170/"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+         <!--Copyright-->
+      <div class="footer-bottom">
+            <p>Copyright &copy;2021 Eshop. Designed By <span>PMMS</span></p>
+        </div>
+    <!--/.Copyright-->
+      </div>
+     </div>
+     
+  </footer>
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="{% static "js/jquery-3.4.1.min.js" %}"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{% static "js/popper.min.js" %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{% static "js/bootstrap.min.js" %}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{% static "js/mdb.min.js" %}"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+
+  </script>
+</body>
+
+</html>

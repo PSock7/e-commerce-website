@@ -1,0 +1,30 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="{% static 'img/favicon.png' %}">
+</br>
+</br>
+</br>
+  <div class="content-section">
+  	<form method="POST">
+  		  {% csrf_token %}
+  		  <fieldset class="form-group">
+  		  	<legend class="border-bottom mb-4">Log In</legend>
+  		  	{{ form|crispy }}
+  		  </fieldset>
+  		  <div class="form-group">
+  		  	<button class="btn btn-outline-info" type="submit">Login</button>
+          <small class="text-muted ml-2">
+            <a href="{% url 'password_reset' %}">Forgot Your Password?</a>
+          </small>
+  		  </div>
+  	</form>
+  	<div class="border-top pt-3">
+  		<small class="text-muted">
+  			<font size="+1">Need An  Account?</font><a class="ml-2" href="{% url 'register' %}"> <font size="+1" face="verdana">Sign up Now</font></a>
+  		</small>
+  	</div>
+  </div>
+{% endblock content %}
